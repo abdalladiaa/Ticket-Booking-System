@@ -28,7 +28,7 @@ button:hover {
 
 .navbar {
   background-color: var(--primary-bg);
-  padding-block: 1.5rem;
+  padding-block: 1rem;
   position: fixed;
   top: 0;
   right: 0;
@@ -280,8 +280,6 @@ button:hover {
   margin-right: 4px;
 }
 
-
-
 .movie-info {
   padding: 1.2rem;
 }
@@ -314,5 +312,17 @@ button:hover {
     color: green;
 }
 
-/* ======================================== Booking =============================================== */
+/* ======================================== Classes Added For UI Toggle =============================================== */
+.hidden {
+  display: none !important;
+}
 
+.cart-count {
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+  margin-left: 5px;
+  font-weight: bold;
+}

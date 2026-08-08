@@ -29,8 +29,9 @@
           </ul>
         </nav>
         <div class="actions">
-          <a href="">
+          <a href="#" id="cart-btn">
             <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cart-count" class="cart-count">0</span>
           </a>
           <a href="#">
             <i class="fa-solid fa-user"></i>
@@ -38,6 +39,7 @@
         </div>
       </div>
     </header>
+
     <section id="home" class="hero">
       <div class="hero-overlay"></div>
 
@@ -60,15 +62,15 @@
           </p>
 
           <div class="hero-actions">
-            <button class="btn primary-btn">
+            <a href="#booking" class="btn primary-btn">
               Book Your Ticket
               <i class="fa-solid fa-arrow-right"></i>
-            </button>
+            </a>
 
-            <button class="btn secondary-btn">
+            <a href="#movies" class="btn secondary-btn">
               <i class="fa-solid fa-play"></i>
               Explore Movies
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -84,12 +86,33 @@
         </div>
 
         <div class="movies-grid">
-          <!-- ====================== Cards =========================== -->
         </div>
       </div>
     </section>
 
-    
+    <!-- Booking Section -->
+    <section id="booking" class="booking-section hidden">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-badge">Reservation</span>
+            <h2>Book Your Ticket</h2>
+          </div>
+          <button id="back-to-movies" class="btn secondary-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Movies
+          </button>
+        </div>
+        
+        <!-- المكان اللي هيظهر فيه الفيلم اللي تم اختياره -->
+        <div id="cart-items" class="movies-grid"></div>
+
+        <div id="cart-actions" style="margin-top: 2rem; display: none; text-align: center;">
+          <button id="confirm-booking" class="btn primary-btn" style="margin: auto;">
+            Confirm Booking <i class="fa-solid fa-check"></i>
+          </button>
+        </div>
+      </div>
+    </section>
 
     <script src="index.js"></script>
   </body>
