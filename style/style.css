@@ -10,13 +10,13 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-a{
-    text-decoration: none;
-    color: inherit;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-button:hover{
-    cursor: pointer;
+button:hover {
+  cursor: pointer;
 }
 
 .navbar {
@@ -58,9 +58,123 @@ button:hover{
   padding: 5px;
 }
 
-
-.navbar .container .actions{
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+.navbar .container .actions {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
+
+/* =============================== Hero Section ========================================= */
+
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: white;
+  background-image: url("../assets/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    90deg,
+    rgba(14, 14, 14, 0.98) 0%,
+    rgba(14, 14, 14, 0.85) 35%,
+    rgba(14, 14, 14, 0.35) 75%,
+    rgba(14, 14, 14, 0.7) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-text {
+  max-width: 650px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  color: var(--primary-color);
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  margin-bottom: 1.5rem;
+}
+
+.hero-text h2 {
+  font-size: 5.5rem;
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+}
+
+.hero-text h2 span {
+  color: var(--primary-color);
+}
+
+.hero-text p {
+  max-width: 550px;
+  color: #cfcfcf;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 14px 22px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn.primary-btn {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn.primary-btn:hover {
+  background-color: #c70812;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(229, 9, 20, 0.3);
+}
+
+.btn.secondary-btn {
+  background-color: transparent;
+  color: white;
+  border: 1px solid #555;
+}
+
+.btn.secondary-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: white;
+}
+
+
+/* =========================================== Movies ================================================= */
