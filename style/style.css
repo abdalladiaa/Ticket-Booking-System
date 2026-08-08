@@ -6,6 +6,7 @@
 html {
   scroll-behavior: smooth;
 }
+
 section {
   color: white;
 }
@@ -64,9 +65,11 @@ button:hover {
 .navbar .container nav ul li {
   padding: 5px;
 }
+
 .navbar .container nav ul li a {
   transition: 0.3s ease;
 }
+
 .navbar .container nav ul li a:hover {
   color: var(--primary-color);
 }
@@ -76,6 +79,7 @@ button:hover {
   align-items: center;
   gap: 2rem;
 }
+
 .navbar .container .actions a {
   transition: 0.3s ease;
 }
@@ -83,8 +87,6 @@ button:hover {
 .navbar .container .actions a:hover {
   color: var(--primary-color);
 }
-
-/* =============================== Hero Section ========================================= */
 
 .hero {
   min-height: 100vh;
@@ -101,7 +103,6 @@ button:hover {
 .hero-overlay {
   position: absolute;
   inset: 0;
-
   background: linear-gradient(
     90deg,
     rgba(14, 14, 14, 0.98) 0%,
@@ -124,13 +125,11 @@ button:hover {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-
   color: var(--primary-color);
   font-size: 0.9rem;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 2px;
-
   margin-bottom: 1.5rem;
 }
 
@@ -164,12 +163,10 @@ button:hover {
   font-size: 1rem;
   font-weight: bold;
   border: none;
-
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-
   cursor: pointer;
   transition: 0.3s ease;
 }
@@ -195,8 +192,6 @@ button:hover {
   background-color: rgba(255, 255, 255, 0.1);
   border-color: white;
 }
-
-/* =========================================== Movies ================================================= */
 
 .movies-section {
   padding-block: 6rem;
@@ -238,7 +233,6 @@ button:hover {
   background-color: #171717;
   border-radius: 12px;
   overflow: hidden;
-
   transition: 0.3s ease;
 }
 
@@ -257,7 +251,6 @@ button:hover {
   height: 100%;
   object-fit: cover;
   display: block;
-
   transition: 0.4s ease;
 }
 
@@ -293,10 +286,8 @@ button:hover {
   display: flex;
   align-items: center;
   gap: 8px;
-
   color: #888;
   font-size: 0.85rem;
-
   margin-bottom: 1rem;
 }
 
@@ -308,15 +299,12 @@ button:hover {
   width: 100%;
 }
 
-.text-green{
-    color: green;
+.text-green {
+  color: green;
 }
-
-/* ======================================== Classes Added For UI Toggle =============================================== */
 .hidden {
   display: none !important;
 }
-
 .cart-count {
   background-color: var(--primary-color);
   color: white;
@@ -325,4 +313,151 @@ button:hover {
   font-size: 0.8rem;
   margin-left: 5px;
   font-weight: bold;
+}
+#booking {
+  background-color: var(--primary-bg);
+  min-height: 100vh;
+  padding-top: 8rem;
+}
+#booking h3 {
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+.booking-summary-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 900px; 
+  margin: 0 auto;
+  padding-bottom: 4rem;
+}
+.selected-movie-wrapper {
+  width: 450px;
+  margin-bottom: 3rem;
+  pointer-events: none;
+}
+.selected-movie-wrapper .select-movie {
+  display: none;
+}
+.ticket-categories-wrapper {
+  width: 100%;
+  margin-bottom: 3rem;
+}
+.categories-title {
+  color: white;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+.ticket-categories {
+  display: flex;
+  flex-direction: row; 
+  gap: 2.5rem;
+  justify-content: center;
+  flex-wrap: nowrap; 
+  width: 100%;
+}
+.ticket-card {
+  background-color: #161616;
+  border: 2px solid #333;
+  border-radius: 12px;
+  padding: 1.5rem 1.8rem;
+  width: 340px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 180px;
+}
+.ticket-card:hover {
+  border-color: #555;
+  transform: translateY(-5px);
+}
+.ticket-card.selected {
+  border-color: var(--primary-color);
+  background-color: rgba(229, 9, 20, 0.04);
+}
+.ticket-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+}
+.ticket-card h4 {
+  color: white;
+  font-size: 1.6rem;
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.premium-badge {
+  color: #d4af37;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.ticket-desc {
+  color: #888;
+  font-size: 0.95rem;
+}
+.radio-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #555;
+  transition: 0.3s ease;
+  margin-top: 5px;
+}
+.ticket-card.selected .radio-circle {
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
+}
+.ticket-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.per-ticket {
+  color: #a67c7c;
+  font-size: 1.1rem;
+}
+.price {
+  color: white;
+}
+.price .amount {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+.price .currency {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-left: 5px;
+}
+.ribbon {
+  position: absolute;
+  top: 22px;
+  right: -38px;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 6px 40px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  transform: rotate(45deg);
+  letter-spacing: 2px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+.confirm-booking-btn {
+  width: 100%;
+  max-width: 340px;
+  padding: 16px;
+  font-size: 1.2rem;
+  margin-top: 1rem;
 }

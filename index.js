@@ -34,11 +34,20 @@ let movies = [
 ];
 
 let moviesGrid = document.querySelector(".movies-grid");
-let cart = {}; 
+let selectedMovie = null;
+
+let order = {
+  movie: null,
+  ticketType: null,
+  price: 0
+};
+
+const PRICES = {
+  Standard: 150,
+  VIP: 300
+};
 
 function getMovieCard(movie) {
-  let isInCart = cart[movie.id] ? true : false;
-
   return `
     <article class="movie-card">
       <div class="movie-image">
@@ -48,18 +57,17 @@ function getMovieCard(movie) {
           ${movie.movieRating}
         </span>
       </div>
-
       <div class="movie-info">
         <h3>${movie.movieName}</h3>
-
         <div class="movie-meta">
           <span>${movie.movieGenre}</span>
           <span>•</span>
           <span>${movie.movieDuration}</span>
         </div>
-
-        <button class="btn primary select-movie ${isInCart ? "text-green" : ""}" data-id="${movie.id}">
-          ${isInCart ? "Movie Added" : "Select Movie"}
+        <button class="btn primary select-movie ${
+          selectedMovie?.id === movie.id ? "text-green" : ""
+        }">
+          ${selectedMovie?.id === movie.id ? "Movie Added" : "Select Movie"}
         </button>
       </div>
     </article>
@@ -75,79 +83,108 @@ function displayMoviesCards() {
 
   let selectMovieBtns = document.querySelectorAll(".select-movie");
 
-  selectMovieBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      let movieId = parseInt(e.target.getAttribute("data-id"));
-      
-      if (cart[movieId]) {
-        delete cart[movieId]; 
+  selectMovieBtns.forEach((btn, index) => {
+    btn.addEventListener("click", () => {
+      if (selectedMovie?.id === movies[index].id) {
+        selectedMovie = null;
+        order.movie = null;
       } else {
-        let clickedMovie = movies.find((m) => m.id === movieId);
-        cart[movieId] = clickedMovie;
+        selectedMovie = movies[index];
+        order.movie = movies[index];
+        order.ticketType = null;
+        order.price = 0;
       }
-
+      
       displayMoviesCards();
       
-      document.getElementById("cart-count").innerText = Object.keys(cart).length;
+      document.getElementById("cart-count").innerText = selectedMovie ? "1" : "0";
     });
   });
 }
 
 displayMoviesCards();
 
-
 let cartBtn = document.getElementById("cart-btn");
 let home = document.getElementById("home");
 let movieSection = document.getElementById("movies");
 let booking = document.getElementById("booking");
 let cartItem = document.getElementById("cart-items");
-let backToMoviesBtn = document.getElementById("back-to-movies");
-let cartActions = document.getElementById("cart-actions");
-let confirmBtn = document.getElementById("confirm-booking");
 
 cartBtn.addEventListener("click", (e) => {
   e.preventDefault();
   home.classList.add("hidden");
   movieSection.classList.add("hidden");
   booking.classList.remove("hidden");
+  renderCart();
+});
 
-  booking.style.backgroundColor = "#0e0e0e";
-  booking.style.minHeight = "100vh";
-  booking.style.paddingTop = "8rem";
-
-  if (Object.keys(cart).length > 0) {
-    cartItem.innerHTML = "";
-    
-    Object.values(cart).forEach((movie) => {
-      cartItem.innerHTML += getMovieCard(movie);
-    });
-    cartActions.style.display = "block";
-  } else {
-    cartItem.innerHTML = "<h3>No movies selected yet. Please go back and select some.</h3>";
-    cartActions.style.display = "none";
+function renderCart() {
+  if (!order.movie) {
+    cartItem.innerHTML = "<h3 style='color: white; text-align: center; width:100%; padding-top: 5rem;'>No movie selected yet. Please go back.</h3>";
+    return;
   }
-});
 
-backToMoviesBtn.addEventListener("click", () => {
-  home.classList.remove("hidden");
-  movieSection.classList.remove("hidden");
-  booking.classList.add("hidden");
-  displayMoviesCards();
-});
+  cartItem.innerHTML = `
+    <div class="booking-summary-container">
+      <div class="selected-movie-wrapper">
+        ${getMovieCard(order.movie)}
+      </div>
+      <div class="ticket-categories-wrapper">
+          <h3 class="categories-title">Select Ticket Category</h3>
+          <div class="ticket-categories">
+            <div class="ticket-card ${order.ticketType === 'Standard' ? 'selected' : ''}" 
+                 onclick="selectCategory('Standard')">
+              ${order.ticketType === 'Standard' ? '<div class="ribbon">SELECTED</div>' : ''}
+              <div class="ticket-card-header">
+                <div>
+                    <h4>Standard</h4>
+                    <span class="ticket-desc">Digital Projection</span>
+                </div>
+                <div class="radio-circle"></div>
+              </div>
+              <div class="ticket-card-footer">
+                <span class="per-ticket">per ticket</span>
+                <div class="price">
+                  <span class="amount">${PRICES.Standard}</span>
+                  <span class="currency">EGP</span>
+                </div>
+              </div>
+            </div>
+            <div class="ticket-card ${order.ticketType === 'VIP' ? 'selected' : ''}" 
+                 onclick="selectCategory('VIP')">
+              ${order.ticketType === 'VIP' ? '<div class="ribbon">SELECTED</div>' : ''}
+              <div class="ticket-card-header">
+                <div>
+                    <h4>VIP <span class="premium-badge">PREMIUM</span></h4>
+                    <span class="ticket-desc">Recliner & Service</span>
+                </div>
+                <div class="radio-circle"></div>
+              </div>
+              <div class="ticket-card-footer">
+                <span class="per-ticket">per ticket</span>
+                <div class="price">
+                  <span class="amount">${PRICES.VIP}</span>
+                  <span class="currency">EGP</span>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <button id="confirm-btn" class="btn primary-btn confirm-booking-btn">Confirm Booking</button>
+    </div>
+  `;
 
-confirmBtn.addEventListener("click", () => {
-  if (Object.keys(cart).length > 0) {
-    
-    movies = movies.filter((movie) => !cart[movie.id]);
+  document.getElementById("confirm-btn").addEventListener("click", () => {
+    if (!order.ticketType) {
+      alert("Please select a ticket category (Standard or VIP) before confirming.");
+      return;
+    }
+    alert(`Booking Confirmed! \nMovie: ${order.movie.movieName}\nCategory: ${order.ticketType}\nTotal Price: ${order.price} EGP`);
+  });
+}
 
-    cart = {};
-    document.getElementById("cart-count").innerText = "0";
-
-    alert("Booking Confirmed Successfully!");
-
-    displayMoviesCards();
-    home.classList.remove("hidden");
-    movieSection.classList.remove("hidden");
-    booking.classList.add("hidden");
-  }
-});
+window.selectCategory = function(type) {
+  order.ticketType = type;
+  order.price = PRICES[type];
+  renderCart();
+};
