@@ -200,7 +200,7 @@ button:hover {
 
 .movies-section {
   padding-block: 6rem;
-  background-color: #0e0e0e;
+  background-color: var(--primary-bg);
 }
 
 .section-header {
@@ -280,22 +280,7 @@ button:hover {
   margin-right: 4px;
 }
 
-.movie-play {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  background-color: var(--primary-color);
-  opacity: 0;
-  transition: 0.3s;
-}
 
-.movie-card:hover .movie-play {
-  opacity: 1;
-}
 
 .movie-info {
   padding: 1.2rem;
@@ -324,3 +309,10 @@ button:hover {
 .select-movie {
   width: 100%;
 }
+
+.text-green{
+    color: green;
+}
+
+/* ======================================== Booking =============================================== */
+

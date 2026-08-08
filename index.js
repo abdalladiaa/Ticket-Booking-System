@@ -39,6 +39,8 @@ let movies = [
 let moviesGrid = document.querySelector(".movies-grid");
 let selectedMovie = null;
 
+let order = {};
+
 function getMovieCard(movie) {
   return `
     <article class="movie-card">
@@ -50,10 +52,6 @@ function getMovieCard(movie) {
           <i class="fa-solid fa-star"></i>
           ${movie.movieRating}
         </span>
-
-        <button class="movie-play">
-          <i class="fa-solid fa-play"></i>
-        </button>
       </div>
 
       <div class="movie-info">
@@ -66,8 +64,10 @@ function getMovieCard(movie) {
           <span>${movie.movieDuration}</span>
         </div>
 
-        <button class="btn primary select-movie">
-          Select Movie
+        <button class="btn primary select-movie ${
+          selectedMovie?.id === movie.id ? "text-green" : ""
+        }">
+          ${selectedMovie?.id === movie.id ? "Movie Added" : "Select Movie"}
         </button>
 
       </div>
@@ -76,17 +76,26 @@ function getMovieCard(movie) {
   `;
 }
 
-movies.forEach((movie) => {
-  moviesGrid.innerHTML += getMovieCard(movie);
-});
+function displayMoviesCards() {
+  moviesGrid.innerHTML = "";
 
-let selectMovieBtns = document.querySelectorAll(".select-movie");
-
-selectMovieBtns.forEach((btn, index) => {
-  btn.addEventListener("click", () => {
-    selectedMovie = movies[index];
-    console.log(selectedMovie);
+  movies.forEach((movie) => {
+    moviesGrid.innerHTML += getMovieCard(movie);
   });
-});
-console.log(selectedMovie);
 
+  let selectMovieBtns = document.querySelectorAll(".select-movie");
+
+  selectMovieBtns.forEach((btn, index) => {
+    btn.addEventListener("click", () => {
+      if (selectedMovie?.id === movies[index].id) {
+        selectedMovie = null;
+      } else {
+        selectedMovie = movies[index];
+      }
+
+      displayMoviesCards();
+    });
+  });
+}
+
+displayMoviesCards();
