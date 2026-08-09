@@ -236,7 +236,7 @@ function renderCart() {
 
   const confirmBtn = document.getElementById("confirm-btn");
   if (confirmBtn) {
-    confirmBtn.onclick = () => {
+    confirmBtn.addEventListener("click", () => {
       if (!order.ticketType) {
         alert(
           "Please select a ticket category (Standard or VIP) before confirming.",
@@ -248,7 +248,7 @@ function renderCart() {
         `Booking Confirmed! \nMovie: ${order.movie.movieName}\nCategory: ${order.ticketType}\nQuantity: ${order.quantity}\nTotal Price: ${totalPrice} EGP`,
       );
       allEnd();
-    };
+    });
   }
 }
 
