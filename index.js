@@ -48,6 +48,8 @@ const PRICES = {
   VIP: 300,
 };
 
+let navCartBtnCount = document.getElementById("cart-count");
+
 function getMovieCard(movie) {
   return `
     <article class="movie-card">
@@ -98,8 +100,6 @@ function displayMoviesCards() {
       }
 
       displayMoviesCards();
-
-      let navCartBtnCount = document.getElementById("cart-count");
 
       navCartBtnCount.innerText = selectedMovie ? "1" : "0";
     });
@@ -217,7 +217,7 @@ function renderCart() {
     };
     selectedMovie = null;
     displayMoviesCards();
-    navCartBtnCount.innerHTML = 0;
+    navCartBtnCount.innerHTML = "0";
   }
 
   if (quantityDecreaseBtn && quantityIncreaseBtn) {
